@@ -1,0 +1,39 @@
+{
+  "name": "datadance-backend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@fastify/compress": "^6.1.0",
+    "@fastify/cors": "^8.0.0",
+    "@fastify/swagger": "^7.4.0",
+    "@fastify/type-provider-typebox": "^2.3.0",
+    "@mgcrea/fastify-request-logger": "^0.6.1",
+    "@octokit/rest": "^18.12.0",
+    "@sinclair/typebox": "^0.24.47",
+    "async-retry": "^1.3.3",
+    "dotenv": "^16.0.1",
+    "fastify": "^4.1.0",
+    "got": "^12.1.0",
+    "http-errors": "^2.0.0",
+    "mysql2": "^2.3.3",
+    "nanoid": "^4.0.0",
+    "pino": "^8.1.0",
+    "pino-pretty": "^8.1.0"
+  },
+  "devDependencies": {
+    "@types/async-retry": "^1.4.4",
+    "@types/http-errors": "^1.8.2",
+    "@types/node": "^18.0.0",
+    "esbuild": "^0.14.47",
+    "nodemon": "^2.0.16",
+    "typescript": "^4.7.4"
+  },
+  "scripts": {
+    "start": "nodemon",
+    "build": "esbuild src/cmd/*.ts --bundle --platform=node --sourcemap --outdir=dist --format=esm --external:./node_modules/*",
+    "server": "node --enable-source-maps dist/server.js"
+  }
+}
