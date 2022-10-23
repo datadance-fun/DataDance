@@ -33,10 +33,13 @@ import { isEmpty } from "lodash";
 import { AnyMark } from "vega-lite/build/src/mark";
 import { DataResult } from "@/api";
 import { useBlockFocus } from "./useBlockFocus";
+import { AxisOptionSelect, AxisOptionValue } from "./AxisOptionSelect";
 
 export type FilterFormValues = QueryRequest & {
   mark: AnyMark;
   srcDataSet: DatasetsList200ResponseInner;
+  xAxis?: AxisOptionValue;
+  yAxis?: AxisOptionValue;
 };
 
 export const FilterPanel: React.FC<{
@@ -94,11 +97,15 @@ export const FilterPanel: React.FC<{
               }}
               onChange={({ dataSource, srcDataSet }) => {
                 form.setValues({
+                  mark: "line",
                   srcDataSet,
                   data_source: dataSource,
                   x: {},
                   y: {},
+                  color: {},
                   filters: [],
+                  xAxis: undefined,
+                  yAxis: undefined,
                 });
               }}
             ></DataSourceSelect>
@@ -119,12 +126,14 @@ export const FilterPanel: React.FC<{
             <div>
               <Group spacing="md">
                 <Text size="xs">X Axis</Text>
-
-                {/* {!isEmpty(form.values.x) && (
-                  <span className="cursor-pointer">
-                    <GearIcon />
-                  </span>
-                )} */}
+                {!isEmpty(form.values.x) && (
+                  <AxisOptionSelect
+                    value={form.values.xAxis}
+                    onChange={(value) => {
+                      form.setFieldValue("xAxis", value);
+                    }}
+                  />
+                )}
               </Group>
               <div className="mb-1"></div>
               <Stack spacing="sm">
@@ -140,11 +149,14 @@ export const FilterPanel: React.FC<{
             <div>
               <Group spacing="sm">
                 <Text size="xs">Y Axis</Text>
-                {/* {!isEmpty(form.values.y) && (
-                  <span className="cursor-pointer">
-                    <GearIcon />
-                  </span>
-                )} */}
+                {!isEmpty(form.values.x) && (
+                  <AxisOptionSelect
+                    value={form.values.yAxis}
+                    onChange={(value) => {
+                      form.setFieldValue("yAxis", value);
+                    }}
+                  />
+                )}
               </Group>
               <div className="mb-1"></div>
               <Stack spacing="sm">
@@ -258,10 +270,10 @@ const pickEncoding = (query: FilterFormValues, result: DataResult) => {
   const color = getEncoding(query.color);
 
   if (x) {
-    encoding.x = x;
+    encoding.x = query.xAxis ? { ...x, ...query.xAxis } : x;
   }
   if (y) {
-    encoding.y = y;
+    encoding.y = query.yAxis ? { ...y, ...query.yAxis } : y;
   }
   if (color) {
     encoding.color = color;
