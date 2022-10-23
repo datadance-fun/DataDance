@@ -18,26 +18,28 @@ export const Popover = (props: IPopoverProps) => {
       <PopoverPrimitive.Trigger asChild>
         {props.children}
       </PopoverPrimitive.Trigger>
-      <PopoverPrimitive.Content
-        align="center"
-        sideOffset={4}
-        className={twMerge(
-          "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
-          "w-60 rounded p-4 shadow-xl border-stone-100 border",
-          "bg-white",
-          props.className
-        )}
-      >
-        <h3 className="text-base font-medium text-gray-900">{props.title}</h3>
-        <div className="text-sm mt-4">{props.content}</div>
-        <PopoverPrimitive.Close
-          className={cx(
-            "absolute top-4 right-4 inline-flex items-center justify-center rounded-full p-1 focus-ring"
+      <PopoverPrimitive.Portal>
+        <PopoverPrimitive.Content
+          align="center"
+          sideOffset={4}
+          className={twMerge(
+            "radix-side-top:animate-slide-up radix-side-bottom:animate-slide-down",
+            "w-60 z-10 rounded p-4 shadow-xl border-stone-100 border",
+            "bg-white",
+            props.className
           )}
         >
-          <Cross1Icon className="h-4 w-4 text-gray-500 hover:text-gray-700" />
-        </PopoverPrimitive.Close>
-      </PopoverPrimitive.Content>
+          <h3 className="text-base font-medium text-gray-900">{props.title}</h3>
+          <div className="text-sm mt-4">{props.content}</div>
+          <PopoverPrimitive.Close
+            className={cx(
+              "absolute top-4 right-4 inline-flex items-center justify-center rounded-full p-1 focus-ring"
+            )}
+          >
+            <Cross1Icon className="h-4 w-4 text-gray-500 hover:text-gray-700" />
+          </PopoverPrimitive.Close>
+        </PopoverPrimitive.Content>
+      </PopoverPrimitive.Portal>
     </PopoverPrimitive.Root>
   );
 };

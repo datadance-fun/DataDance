@@ -270,14 +270,23 @@ const pickEncoding = (query: FilterFormValues, result: DataResult) => {
   const color = getEncoding(query.color);
 
   if (x) {
-    encoding.x = query.xAxis ? { ...x, ...query.xAxis } : x;
+    encoding.x = x;
+    if (query.xAxis) {
+      encoding.x.stack = query.xAxis.stack;
+      encoding.x.scale.zero = query.xAxis.zero;
+    }
   }
   if (y) {
-    encoding.y = query.yAxis ? { ...y, ...query.yAxis } : y;
+    encoding.y = y;
+    if (query.yAxis) {
+      encoding.y.stack = query.yAxis.stack;
+      encoding.y.scale.zero = query.yAxis.zero;
+    }
   }
   if (color) {
     encoding.color = color;
   }
+  console.log(encoding);
   const transform: { flatten?: string[]; calculate?: string; as?: string }[] = [
     { flatten: ["rows"] },
   ];

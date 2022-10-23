@@ -59,7 +59,7 @@ export function Nav() {
           </a>
         </div>
         <div className="text-gray-300">|</div>
-        <MenuBarLinkBlankOpen href="#" title="Explore data sets and notebooks">
+        <MenuBarLinkBlankOpen href="/" title="Explore data sets and notebooks">
           Explore
         </MenuBarLinkBlankOpen>
         <div className="flex-1"></div>
