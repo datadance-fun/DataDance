@@ -3,6 +3,8 @@ import { Type, Static } from "@sinclair/typebox";
 import HttpErrors from "http-errors";
 import { Octokit } from "@octokit/rest";
 import { log } from "./logger";
+import { Low } from "lowdb";
+import { JSONFile } from "lowdb/node";
 
 export const CreateGistResponseSchema = Type.Object({
   gistId: Type.String(),
@@ -16,21 +18,36 @@ export interface ShareAPI {
   getGist(id: string): Promise<string>;
 }
 
-export class ShareAPIInMemory implements ShareAPI {
-  private store: Record<string, string> = {};
+type DBSchema = {
+  gists: Record<string, string>;
+};
+
+export class ShareAPILocal implements ShareAPI {
+  db = new Low<DBSchema>(new JSONFile("./db_share.json"));
+
+  constructor() {
+    this.db.read().then(() => {
+      log.info("Share API database loaded");
+      this.db.data ||= { gists: {} };
+    });
+  }
 
   async createGist(data: string): Promise<CreateGistResponse> {
     const id = nanoid();
-    this.store[id] = data;
+
+    this.db.data!.gists[id] = data;
+    this.db.write();
+
     return {
       gistId: id,
     };
   }
+
   async getGist(id: string): Promise<string> {
-    if (!this.store[id]) {
+    if (!this.db.data!.gists[id]) {
       throw new HttpErrors.NotFound("Gist not found");
     }
-    return this.store[id];
+    return this.db.data!.gists[id];
   }
 }
 
@@ -85,9 +102,9 @@ export class ShareAPIGist implements ShareAPI {
 export const DefaultShareAPI: ShareAPI = (() => {
   if (!process.env.PLAYGROUND_GITHUB_TOKEN) {
     log.warn(
-      "PLAYGROUND_GITHUB_TOKEN is not configured, using in-memory Share API. The data will be lost after server is restarted."
+      "PLAYGROUND_GITHUB_TOKEN is not configured, using local Share API."
     );
-    return new ShareAPIInMemory();
+    return new ShareAPILocal();
   } else {
     return new ShareAPIGist();
   }

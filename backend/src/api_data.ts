@@ -10,6 +10,23 @@ import {
 } from "./api_db";
 import { log } from "./logger";
 import { StringEnum } from "./type_utils";
+import { Low } from "lowdb";
+import { JSONFile } from "lowdb/node";
+import { throttle } from "lodash-es";
+
+type DBSchema = {
+  listValues: Record<string, string>;
+};
+
+const cache = new Low<DBSchema>(new JSONFile("./db_data_cache.json"));
+cache.read().then(() => {
+  log.info("Data cache loaded");
+  cache.data ||= { listValues: {} };
+});
+
+const cacheFlush = throttle(() => {
+  cache.write().then(() => log.info("Data cache persisted"));
+}, 10 * 1000);
 
 /* ============================= */
 /* ====== Type definition ====== */
@@ -321,11 +338,31 @@ export async function listColumnValues(
   request: ListColumnValuesRequest,
   db: DBPool
 ): Promise<ListColumnValuesResponse> {
+  const cacheKey = JSON.stringify(request);
+  {
+    const value = cache.data!.listValues[cacheKey];
+    if (value) {
+      log.info(request, "Reused cache for listColumnValues request");
+      return JSON.parse(value);
+    }
+  }
+  const data = await listColumnValuesFromDB(request, db);
+  cache.data!.listValues[cacheKey] = JSON.stringify(data);
+  cacheFlush();
+  return data;
+}
+
+export async function listColumnValuesFromDB(
+  request: ListColumnValuesRequest,
+  db: DBPool
+): Promise<ListColumnValuesResponse> {
   const data_source = removeSemicolonInDataSource(request.data_source);
   const column_name = `\`${request.column_name}\``;
   const categorical_value_include = request.categorical_value_include;
   const temporal_value_function = request.temporal_value_function;
-  const source = data_source.query ? `(${data_source.query})` : data_source.dataset_id;
+  const source = data_source.query
+    ? `(${data_source.query})`
+    : data_source.dataset_id;
   switch (request.column_type) {
     case "datetime": {
       if (temporal_value_function) {
@@ -431,7 +468,9 @@ export async function query(
               return `${column_name} BETWEEN FROM_UNIXTIME(${min}) AND FROM_UNIXTIME(${max})`;
           }
         } else if (filter.kind == "one_of") {
-          return `${column_name} IN (${filter.one_of?.map((v) => `"${v}"`).join(',')})`;
+          return `${column_name} IN (${filter.one_of
+            ?.map((v) => `"${v}"`)
+            .join(",")})`;
         } else {
           log.error(`Unknown kind of filter: ${filter.kind}`);
           return "1 = 1";

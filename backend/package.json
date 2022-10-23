@@ -18,6 +18,8 @@
     "fastify": "^4.1.0",
     "got": "^12.1.0",
     "http-errors": "^2.0.0",
+    "lodash-es": "^4.17.21",
+    "lowdb": "^5.0.3",
     "mysql2": "^2.3.3",
     "nanoid": "^4.0.0",
     "pino": "^8.1.0",
@@ -26,6 +28,7 @@
   "devDependencies": {
     "@types/async-retry": "^1.4.4",
     "@types/http-errors": "^1.8.2",
+    "@types/lodash-es": "^4.17.6",
     "@types/node": "^18.0.0",
     "esbuild": "^0.14.47",
     "nodemon": "^2.0.16",

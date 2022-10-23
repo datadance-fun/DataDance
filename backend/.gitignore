@@ -13,7 +13,6 @@ dist
 dist-ssr
 *.local
 .env
-yarn.lock
 
 # Editor directories and files
 .vscode/*
@@ -26,3 +25,6 @@ yarn.lock
 *.sln
 *.sw?
 
+# Local database files
+db_share.json
+db_data_cache.json

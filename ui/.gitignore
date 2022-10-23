@@ -12,7 +12,6 @@ node_modules
 dist
 dist-ssr
 *.local
-yarn.lock
 src/api
 
 # Editor directories and files
