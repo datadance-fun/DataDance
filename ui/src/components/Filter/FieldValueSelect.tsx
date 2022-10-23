@@ -72,6 +72,7 @@ export const FieldValueSelect: React.FC<FieldValueProps> = ({
       value_kind === ListColumnValuesResponseValueKindEnum.Categorical &&
       categorical_info
     ) {
+      console.log("renderSelect", value);
       const oneOf = value?.one_of ?? new Set();
       const val =
         oneOf instanceof Set
@@ -82,10 +83,18 @@ export const FieldValueSelect: React.FC<FieldValueProps> = ({
       return (
         <MultiSelect
           onChange={(value) => {
-            onChange({
-              one_of: value,
-              kind: "one_of",
-            });
+            if (typeof value === "object" && value.constructor === Set) {
+              onChange({
+                one_of: Array.from(value),
+                kind: "one_of",
+              });
+            } else {
+              console.log("Unexpected MultiSelect value", value);
+              onChange({
+                one_of: [],
+                kind: "one_of",
+              });
+            }
           }}
           value={val}
           options={multiSelectOpt}
