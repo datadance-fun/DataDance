@@ -54,25 +54,30 @@ export const Editor = (props: IEditorProps) => {
         tools={EDITOR_JS_TOOLS}
         defaultValue={
           props.defaultValue ?? {
-            time: 1635603431943,
+            time: 1666522786358,
             blocks: [
               {
-                id: "sheNwCUP5A",
+                id: "csyxUmlghN",
                 type: "header",
                 data: {
-                  text: "Data Dance",
+                  text: "Welcome to Data Dance",
                   level: 2,
                 },
               },
               {
-                id: "12iM3lqzcm",
+                id: "szwhWof1aH",
                 type: "paragraph",
                 data: {
-                  text: "Hey. Meet the data dance. On this page you can see it in action — try to explore the data.",
+                  text: "Data Dance is a service where you can analysis and visualize tons of real-time updated dataset without any professional knowledge.",
                 },
               },
               {
-                id: "fvZGuFXHmK",
+                id: "kmLvpkYVzR",
+                type: "sql",
+                data: {},
+              },
+              {
+                id: "w1nJs8CHHB",
                 type: "header",
                 data: {
                   text: "Key features",
@@ -80,12 +85,12 @@ export const Editor = (props: IEditorProps) => {
                 },
               },
               {
-                id: "xnPuiC9Z8M",
+                id: "-UuKViSGn_",
                 type: "list",
                 data: {
                   style: "unordered",
                   items: [
-                    "Data just works ™ without any setup",
+                    "Data just works ™<b> </b>without any setup",
                     "Analyze and visualize in UI",
                     "Analyze Billions data in seconds",
                     "Community driven",
@@ -93,31 +98,78 @@ export const Editor = (props: IEditorProps) => {
                 },
               },
               {
-                id: "-MhwnSs3Dw",
+                id: "mpkKM4ZYyI",
                 type: "header",
                 data: {
-                  text: "What does it mean «Data Editor»",
+                  text: "How to Analyze and visualize in UI",
                   level: 3,
                 },
               },
               {
-                id: "Ptb9oEioJn",
+                id: "hIigcWPe57",
                 type: "paragraph",
                 data: {
-                  text: 'Workspace in classic editors is made of a single contenteditable element, used to create different HTML markups. Data editor <mark class="cdx-marker">workspace consists of separate Blocks: paragraphs, headings, images, lists, quotes, visualization etc</mark>. Each of them is an independent contenteditable element (or more complex structure) provided by Plugin and united by Editor\'s Core.',
+                  text: "Next, we will introduce how to analyze and visualize data without any professional knowledge.",
                 },
               },
               {
-                id: "N8bOHTfUCN",
-                type: "delimiter",
-                data: {},
+                id: "C483dXXrZb",
+                type: "paragraph",
+                data: {
+                  text: "1. Open a Visualization block",
+                },
               },
               {
-                id: "N83DHTfUCN",
-                type: "sql",
-                data: {},
+                id: "j7uevvQ3P6",
+                type: "paragraph",
+                data: {
+                  text: "2. Select a block and ready to choose a dataset.",
+                },
+              },
+              {
+                id: "9bhwux8QGE",
+                type: "paragraph",
+                data: {
+                  text: "3. Choose the dataset you like",
+                },
+              },
+              {
+                id: "sS0GZxnQFu",
+                type: "paragraph",
+                data: {
+                  text: "4. Preview the dataset",
+                },
+              },
+              {
+                id: "XKqXxZ7Mnj",
+                type: "paragraph",
+                data: {
+                  text: "5. We also support customized queries.",
+                },
+              },
+              {
+                id: "Uj6qGErKqU",
+                type: "paragraph",
+                data: {
+                  text: "6. Check the result",
+                },
+              },
+              {
+                id: "9oDZXVMIfx",
+                type: "paragraph",
+                data: {
+                  text: "7. Choose x, y and color axis, the chart is generated.<br>",
+                },
+              },
+              {
+                id: "0NiqXJNPyU",
+                type: "paragraph",
+                data: {
+                  text: "8. Also you can add some filters",
+                },
               },
             ],
+            version: "2.25.0",
           }
         }
       />
