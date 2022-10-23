@@ -230,6 +230,15 @@ export async function getList(): Promise<GetListResponse> {
     //   },
     // },
     {
+      id: "20",
+      name: "transaction",
+      info: {
+        description: "A Real-Time NFT transactions dataset.",
+        name: "NFT transactions dataset",
+        category: "Blockchain",
+      },
+    },
+    {
       id: "21",
       name: "five_years_weather_data",
       info: {

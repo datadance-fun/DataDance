@@ -369,7 +369,7 @@ export async function listColumnValuesFromDB(
         const sql = `SELECT DISTINCT ${timeFuncTransfrom(
           temporal_value_function,
           column_name
-        )} AS ${column_name} FROM ${source} AS t GROUP BY ${column_name} ORDER BY ${column_name}`;
+        )} AS ${column_name} FROM ${source} AS t GROUP BY ${column_name}`;
         const sql_result: ExecuteSQLResult = await db.executeSQL(sql);
         return {
           value_kind: "categorical",
@@ -411,9 +411,9 @@ export async function listColumnValuesFromDB(
     case "string": {
       let sql: string;
       if (categorical_value_include) {
-        sql = `SELECT DISTINCT ${column_name} AS x FROM ${source} AS t WHERE ${column_name} LIKE '%${categorical_value_include}%' ORDER BY x`;
+        sql = `SELECT DISTINCT ${column_name} AS x FROM ${source} AS t WHERE ${column_name} LIKE '%${categorical_value_include}%'`;
       } else {
-        sql = `SELECT DISTINCT ${column_name} AS x FROM ${source} AS t ORDER BY x`;
+        sql = `SELECT DISTINCT ${column_name} AS x FROM ${source} AS t`;
       }
       const sql_result = await db.executeSQL(sql);
       return {
