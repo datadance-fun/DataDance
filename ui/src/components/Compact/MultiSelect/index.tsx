@@ -1,6 +1,6 @@
-import { useControllableValue, useMemoizedFn } from "ahooks";
+import { useControllableValue, useDebounceFn, useMemoizedFn } from "ahooks";
 import { orderBy } from "lodash";
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { DropdownPrimitive } from "../DropdownPrimitive";
 
 export interface IMultiSelectOption {
@@ -21,7 +21,7 @@ export interface IMultiSelectProps
   onChange?: (value: Set<string>) => void;
 }
 
-export function MultiSelect(props: IMultiSelectProps) {
+function MultiSelect_(props: IMultiSelectProps) {
   const { options, placeholder, value, defaultValue, onChange, ...restProps } =
     props;
   const [state, setState] = useControllableValue<Set<string>>(props, {
@@ -60,22 +60,33 @@ export function MultiSelect(props: IMultiSelectProps) {
     }
   );
 
-  const filteredOptions = useMemo(() => {
-    const orderedOptions = orderBy(options, ["value"]);
-    if (!filter) {
-      return orderedOptions.slice(0, 50);
-    }
-    const fl = filter.toLowerCase();
-    const ret: Array<IMultiSelectOption> = [];
-    for (const opt of orderedOptions) {
-      if (opt.value.toLowerCase().indexOf(fl) > -1) {
-        ret.push(opt);
+  const [filteredOptions, setFilteredOptions] = useState<
+    Array<IMultiSelectOption>
+  >([]);
+
+  const updateFilteredOptions = useDebounceFn(
+    () => {
+      const orderedOptions = orderBy(options, ["value"]);
+      if (!filter) {
+        return setFilteredOptions(options);
       }
-      if (ret.length === 50) {
-        break;
+      const fl = filter.toLowerCase();
+      const ret: Array<IMultiSelectOption> = [];
+      for (const opt of orderedOptions) {
+        if (opt.value.toLowerCase().indexOf(fl) > -1) {
+          ret.push(opt);
+        }
+        if (ret.length === 50) {
+          break;
+        }
       }
-    }
-    return ret;
+      setFilteredOptions(ret);
+    },
+    { wait: 200 }
+  );
+
+  useEffect(() => {
+    updateFilteredOptions.run();
   }, [options, filter]);
 
   const handleSelectDoNotClose = useMemoizedFn((ev: Event) => {
@@ -107,7 +118,7 @@ export function MultiSelect(props: IMultiSelectProps) {
           Deselect all
         </DropdownPrimitive.Item>
         <DropdownPrimitive.Separator />
-        {filteredOptions.map((option) => (
+        {filteredOptions.slice(0, 50).map((option) => (
           <DropdownPrimitive.CheckboxItem
             key={option.value}
             checked={state?.has(option.value) ?? false}
@@ -127,3 +138,5 @@ export function MultiSelect(props: IMultiSelectProps) {
     </DropdownPrimitive.Root>
   );
 }
+
+export const MultiSelect = React.memo(MultiSelect_);

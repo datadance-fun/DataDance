@@ -2,7 +2,7 @@ import {
   ListColumnValuesResponse,
   ListColumnValuesResponseValueKindEnum,
 } from "@/api";
-import React from "react";
+import React, { useMemo } from "react";
 import { capitalize } from "lodash";
 import { MultiSelect } from "../Compact/MultiSelect";
 import { RangeSlider, Space, Text } from "@mantine/core";
@@ -55,6 +55,18 @@ export const FieldValueSelect: React.FC<FieldValueProps> = ({
     );
   };
 
+  const multiSelectOpt = useMemo(() => {
+    if (!categorical_info) {
+      return [];
+    }
+    return categorical_info.values.map((value) => {
+      return {
+        label: capitalize(value),
+        value,
+      };
+    });
+  }, [categorical_info]);
+
   const renderSelect = () => {
     if (
       value_kind === ListColumnValuesResponseValueKindEnum.Categorical &&
@@ -76,12 +88,7 @@ export const FieldValueSelect: React.FC<FieldValueProps> = ({
             });
           }}
           value={val}
-          options={categorical_info.values.map((value) => {
-            return {
-              label: capitalize(value),
-              value,
-            };
-          })}
+          options={multiSelectOpt}
         />
       );
     }
