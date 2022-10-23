@@ -119,7 +119,12 @@ export const FilterPanel: React.FC<{
             <div>
               <Group spacing="md">
                 <Text size="xs">X Axis</Text>
-                {/* <GearIcon /> */}
+
+                {/* {!isEmpty(form.values.x) && (
+                  <span className="cursor-pointer">
+                    <GearIcon />
+                  </span>
+                )} */}
               </Group>
               <div className="mb-2"></div>
               <Stack spacing="sm">
@@ -135,7 +140,11 @@ export const FilterPanel: React.FC<{
             <div>
               <Group spacing="sm">
                 <Text size="xs">Y Axis</Text>
-                {/* <GearIcon /> */}
+                {/* {!isEmpty(form.values.y) && (
+                  <span className="cursor-pointer">
+                    <GearIcon />
+                  </span>
+                )} */}
               </Group>
               <div className="mb-2"></div>
               <Stack spacing="sm">
@@ -213,6 +222,8 @@ const pickEncoding = (query: FilterFormValues, result: DataResult) => {
   }
   const encoding: { [index: string]: any } = {};
 
+  const fields: string[] = [];
+
   const getEncoding = (axis?: QueryDimension) => {
     if (!axis) {
       return null;
@@ -221,15 +232,22 @@ const pickEncoding = (query: FilterFormValues, result: DataResult) => {
       return {
         field: "Count",
         type: "quantitative",
+        scale: {
+          scheme: "tableau10",
+        },
       };
     }
     if (axis.non_count_options?.column_name) {
+      fields.push(axis.non_count_options.column_name);
       return {
         field: axis.non_count_options.column_name,
         type: axis.non_count_options.temporal_value_function
           ? "quantitative"
           : "quantitative",
         // timeUnit: axis.non_count_options.temporal_value_function ?? undefined,
+        scale: {
+          scheme: "tableau10",
+        },
       };
     }
     return null;
@@ -259,7 +277,7 @@ const pickEncoding = (query: FilterFormValues, result: DataResult) => {
         col.data_type === DataColumnDataTypeEnum.String ||
         col.data_type === DataColumnDataTypeEnum.Datetime
       ) {
-        types.type = "Ordinal";
+        types.type = "ordinal";
       }
       encoding[col.name] = {
         ...encoding[col.name],
@@ -358,7 +376,7 @@ export const Filter = ({ api, thisBlock, data, onChange }: IFilterProps) => {
         {chartData?.data && (
           <Chart
             spec={{
-              width: 650,
+              width: "container",
               height: 350,
               autosize: {
                 type: "fit",

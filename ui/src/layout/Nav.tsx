@@ -48,7 +48,7 @@ export function Nav() {
   const location = useLocation();
 
   return (
-    <div className="fixed h-12 top-0 z-40 w-full backdrop-blur-sm backdrop-brightness-125 border-slate-200 border-b">
+    <div className="fixed h-12 top-0 z-40 w-full backdrop-blur-sm backdrop-brightness-125 border-slate-200 border-b bg-white">
       <div className="mx-auto h-12 relative flex items-center px-[100px] space-x-4">
         <div>
           <a href="/" className="focus-ring py-2 inline-flex items-center">

@@ -44,3 +44,18 @@
     /* margin: 1.67em 0; */
   }
 }
+
+.vega-container,
+.vega-container::after,
+.vega-container::before {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+.vega-container {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

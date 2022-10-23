@@ -68,6 +68,7 @@ export const Chart: React.FC<{
       spec={spec}
       data={data}
       actions={actions}
+      className="vega-container"
       signalListeners={signalListeners}
     ></VegaLite>
   );
