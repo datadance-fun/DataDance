@@ -5,6 +5,10 @@ import { DataSource, QueryDimension } from "./api";
 import { MultiSelect } from "./components/Compact/MultiSelect";
 import { Select } from "./components/Compact/Select";
 import { DataTable } from "./components/DataTable";
+import {
+  AxisOptionSelect,
+  AxisOptionValue,
+} from "./components/Filter/AxisOptionSelect";
 import { DataSourceSelect } from "./components/Filter/DataSourceSelect";
 import { DimensionSelect } from "./components/Filter/DimensionSelect";
 import { FieldSelect, FieldSelectValue } from "./components/Filter/FieldSelect";
@@ -12,6 +16,9 @@ import { FieldSelect, FieldSelectValue } from "./components/Filter/FieldSelect";
 import dataTableData from "./Playground.DataTable.json";
 
 export function PlaygroundPage() {
+  const [valueAxisOption, setValueAxisOption] = useState<
+    AxisOptionValue | undefined
+  >();
   const [valueSelect, setValueSelect] = useState<string | undefined>();
   const [valueMultiSelect, setValueMultiSelect] = useState<
     Set<string> | undefined
@@ -29,6 +36,14 @@ export function PlaygroundPage() {
     <div>
       <div className="bg-slate-100 pt-16 h-screen px-[100px]">
         <Stack spacing="lg">
+          <div>
+            <div>AxisOptionSelect</div>
+            <AxisOptionSelect
+              value={valueAxisOption}
+              onChange={setValueAxisOption}
+            />
+            <div>{JSON.stringify(valueAxisOption)}</div>
+          </div>
           <div>
             <div>Select</div>
             <Select

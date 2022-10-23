@@ -105,7 +105,7 @@ export const FilterPanel: React.FC<{
           </div>
         </Panel>
         <Panel title="Visualization" icon={<CookieIcon />}>
-          <Stack spacing="sm">
+          <Stack spacing="md">
             <Select
               options={[
                 { value: "line", label: "Line" },
@@ -121,7 +121,7 @@ export const FilterPanel: React.FC<{
                 <Text size="xs">X Axis</Text>
                 {/* <GearIcon /> */}
               </Group>
-              <div className="mb-2"></div>
+              <div className="mb-1"></div>
               <Stack spacing="sm">
                 <DimensionSelect
                   {...form.getInputProps("x")}
@@ -137,7 +137,7 @@ export const FilterPanel: React.FC<{
                 <Text size="xs">Y Axis</Text>
                 {/* <GearIcon /> */}
               </Group>
-              <div className="mb-2"></div>
+              <div className="mb-1"></div>
               <Stack spacing="sm">
                 <DimensionSelect
                   {...form.getInputProps("y")}
@@ -161,7 +161,7 @@ export const FilterPanel: React.FC<{
                   </span>
                 )}
               </Group>
-              <div className="mb-2"></div>
+              <div className="mb-1"></div>
               <Stack spacing="sm">
                 <DimensionSelect
                   {...form.getInputProps("color")}

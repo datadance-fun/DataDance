@@ -18,6 +18,7 @@ export interface ISelectProps
   value?: string;
   defaultValue?: string;
   onChange?: (value: string) => void;
+  isWhiteBg?: boolean;
 }
 
 export function Select(props: ISelectProps) {

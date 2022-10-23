@@ -1,3 +1,4 @@
+import cx from "classnames";
 import { twMerge } from "tailwind-merge";
 import * as DropdownMenuPrimitive from "@radix-ui/react-dropdown-menu";
 import {
@@ -217,16 +218,22 @@ function SubContent_(
 function Trigger({
   className,
   children,
+  isWhiteBg,
   ...restProps
-}: React.HTMLAttributes<HTMLDivElement>) {
+}: React.HTMLAttributes<HTMLDivElement> & { isWhiteBg?: boolean }) {
   return (
     <DropdownMenuPrimitive.Trigger asChild>
       <div
         className={twMerge(
-          "inline-flex flex-row items-center text-xs rounded py-1.5 px-2",
-          "cursor-default select-none",
-          "bg-white hover:bg-gray-200 text-gray-700",
-          "appearance-none shadow-xs",
+          cx(
+            "inline-flex flex-row items-center text-xs rounded py-1.5 px-2",
+            "cursor-default select-none",
+            {
+              "bg-white hover:bg-gray-200 text-gray-700 shadow-xs": !isWhiteBg,
+            },
+            { "bg-gray-100 hover:bg-gray-200 text-gray-700": isWhiteBg },
+            "appearance-none"
+          ),
           className
         )}
         {...restProps}
