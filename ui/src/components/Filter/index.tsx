@@ -255,7 +255,10 @@ const pickEncoding = (query: FilterFormValues, result: DataResult) => {
   columns.forEach((col, index) => {
     if (encoding[col.name]) {
       const types: { [index: string]: string } = {};
-      if (col.data_type === DataColumnDataTypeEnum.String) {
+      if (
+        col.data_type === DataColumnDataTypeEnum.String ||
+        col.data_type === DataColumnDataTypeEnum.Datetime
+      ) {
         types.type = "Ordinal";
       }
       encoding[col.name] = {
