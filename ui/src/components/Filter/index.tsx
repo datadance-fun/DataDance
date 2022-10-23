@@ -47,7 +47,7 @@ export const FilterPanel: React.FC<{
   initialValues?: FilterFormValues;
 }> = ({ onChange, initialValues }) => {
   const form = useForm<FilterFormValues>({
-    initialValues: initialValues
+    initialValues: !isEmpty(initialValues)
       ? initialValues
       : {
           data_source: {},
