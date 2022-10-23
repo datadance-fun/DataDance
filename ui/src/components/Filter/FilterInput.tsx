@@ -48,7 +48,8 @@ const FetchField: React.FC<{
     () => {
       return DefaultClient.API.dataListColumnValues({
         data_source: source,
-        ...value,
+        column_name: value?.column_name,
+        column_type: value?.column_type,
       });
     },
     {
