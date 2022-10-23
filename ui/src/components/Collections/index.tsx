@@ -20,7 +20,7 @@ export const CollectionsPage = () => {
           className="absolute inset-0 bg-gray-900 opacity-50"
         />
 
-        <div className="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-64 lg:px-0">
+        <div className="relative max-w-3xl mx-auto py-32 px-6 flex flex-col items-center text-center sm:py-64 lg:px-0 fit-full-height">
           <h1 className="text-4xl font-extrabold tracking-tight text-white lg:text-6xl">
             The future is here
           </h1>

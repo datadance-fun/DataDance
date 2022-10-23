@@ -59,3 +59,9 @@
   align-items: center;
   justify-content: center;
 }
+
+@media screen and (max-width: 1500px) {
+  .fit-full-height {
+    height: calc(100vh - 3rem);
+  }
+}
