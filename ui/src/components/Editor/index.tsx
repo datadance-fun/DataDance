@@ -68,7 +68,7 @@ export const Editor = (props: IEditorProps) => {
                 id: "12iM3lqzcm",
                 type: "paragraph",
                 data: {
-                  text: "Hey. Meet the new Editor. On this page you can see it in action — try to edit this text.",
+                  text: "Hey. Meet the data dance. On this page you can see it in action — try to explore the data.",
                 },
               },
               {
@@ -85,9 +85,10 @@ export const Editor = (props: IEditorProps) => {
                 data: {
                   style: "unordered",
                   items: [
-                    "It is a block-styled editor",
-                    "It returns clean data output in JSON",
-                    "Designed to be extendable and pluggable with a simple API",
+                    "Data just works ™ without any setup",
+                    "Analyze and visualize in UI",
+                    "Analyze Billions data in seconds",
+                    "Community driven",
                   ],
                 },
               },
