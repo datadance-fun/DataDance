@@ -60,7 +60,7 @@ export const Editor = (props: IEditorProps) => {
                 id: "sheNwCUP5A",
                 type: "header",
                 data: {
-                  text: "Editor.js",
+                  text: "Data Dance",
                   level: 2,
                 },
               },
@@ -148,23 +148,15 @@ export const Editor = (props: IEditorProps) => {
                 data: {},
               },
               {
+                id: "N83DHTfUCN",
+                type: "sql",
+                data: {},
+              },
+              {
                 id: "IpKh1dMyC6",
                 type: "paragraph",
                 data: {
                   text: "We have been working on this project more than three years. Several large media projects help us to test and debug the Editor, to make it's core more stable. At the same time we significantly improved the API. Now, it can be used to create any plugin for any task. Hope you enjoy. 😏",
-                },
-              },
-              {
-                id: "FF1iyF3VwN",
-                type: "image",
-                data: {
-                  file: {
-                    url: "https://codex.so/public/app/img/external/codex2x.png",
-                  },
-                  caption: "",
-                  withBorder: false,
-                  stretched: false,
-                  withBackground: false,
                 },
               },
             ],

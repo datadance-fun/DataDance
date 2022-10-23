@@ -34,7 +34,6 @@ export class SQLBlock extends EditorBlockTool {
     this.options = options;
     this.data = options.data;
     this.api = options.api;
-    console.log(options.data);
   }
 
   renderSettings() {
