@@ -19,6 +19,7 @@ import { Nav } from "./layout/Nav";
 import { DefaultClient } from "./services/client";
 import { PlaygroundPage } from "./Playground";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { CollectionsPage } from "./components/Collections";
 
 function ContentPage() {
   const { id } = useParams();
@@ -89,6 +90,10 @@ export default function App() {
                   <Route path="/create" element={<ContentPage />} />
                   <Route path="/gist/:id" element={<ContentPage />} />
                   <Route path="/playground" element={<PlaygroundPage />} />
+                  <Route
+                    path="/collections"
+                    element={<CollectionsPage />}
+                  ></Route>
                   <Route
                     path="*"
                     element={<Navigate to="/create" replace></Navigate>}
