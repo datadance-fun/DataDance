@@ -90,13 +90,10 @@ export default function App() {
                   <Route path="/create" element={<ContentPage />} />
                   <Route path="/gist/:id" element={<ContentPage />} />
                   <Route path="/playground" element={<PlaygroundPage />} />
-                  <Route
-                    path="/collections"
-                    element={<CollectionsPage />}
-                  ></Route>
+                  <Route path="/" element={<CollectionsPage />}></Route>
                   <Route
                     path="*"
-                    element={<Navigate to="/create" replace></Navigate>}
+                    element={<Navigate to="/" replace></Navigate>}
                   />
                 </Routes>
               </div>
