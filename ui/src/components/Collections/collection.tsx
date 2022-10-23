@@ -38,7 +38,7 @@ export const Collection: React.FC<{}> = () => {
   return (
     <ul
       role="list"
-      className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 pt-4"
+      className="grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8 pt-6"
     >
       {files.map((file) => (
         <li

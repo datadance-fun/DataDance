@@ -1,5 +1,6 @@
 import HeroBg from "../../static/hero.png";
 import { Collection } from "./collection";
+import { Pricing } from "./pricing";
 
 export const CollectionsPage = () => {
   return (
@@ -41,11 +42,11 @@ export const CollectionsPage = () => {
         >
           <h2
             id="collection-heading"
-            className="text-2xl font-extrabold tracking-tight text-gray-900"
+            className="text-3xl font-extrabold tracking-tight text-gray-900 lg:text-6xl"
           >
             Shared Collections
           </h2>
-          <p className="mt-4 text-base text-gray-500">
+          <p className="mt-4 text-gray-500 text-xl">
             Start by exploring any project from global community of
             visualization and analysis experts.
           </p>
@@ -58,6 +59,9 @@ export const CollectionsPage = () => {
           className="max-w-7xl mx-auto py-24 px-4 sm:py-24 sm:px-6"
         ></section>
       </main>
+      <section>
+        <Pricing />
+      </section>
 
       <footer aria-labelledby="footer-heading" className="bg-white">
         <h2 id="footer-heading" className="sr-only">
