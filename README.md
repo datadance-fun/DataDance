@@ -1,5 +1,16 @@
 # Data Dance
 
+**Data Dance** is a service where you can analysis and visualize tons of real-time updated dataset without any professional knowledge.
+
+Key features
+
+- Data just works ™ without any setup
+- Analyze and visualize in UI
+- Analyze Billions data in seconds
+- Community driven
+
+And **Data Dance** is still under development.
+
 ## Development
 
 TTY 1:
