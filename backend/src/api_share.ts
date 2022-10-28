@@ -28,7 +28,7 @@ export class ShareAPILocal implements ShareAPI {
   constructor() {
     this.db.read().then(() => {
       log.info("Share API database loaded");
-      this.db.data ||= { gists: {} };
+      this.db.data = this.db.data || { gists: {} };
     });
   }
 
