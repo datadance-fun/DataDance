@@ -21,7 +21,7 @@ type DBSchema = {
 const cache = new Low<DBSchema>(new JSONFile("./db_data_cache.json"));
 cache.read().then(() => {
   log.info("Data cache loaded");
-  cache.data ||= { listValues: {} };
+  cache.data = cache.data || { listValues: {} };
 });
 
 const cacheFlush = throttle(() => {
