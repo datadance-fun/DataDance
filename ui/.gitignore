@@ -27,3 +27,5 @@ src/api
 
 /api.json
 /.openapi-downloaded
+
+/stats.html

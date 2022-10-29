@@ -1,3 +1,4 @@
+import { visualizer } from "rollup-plugin-visualizer";
 import * as path from "path";
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
@@ -14,5 +15,5 @@ export default defineConfig({
       transformMixedEsModules: true,
     },
   },
-  plugins: [react()],
+  plugins: [react(), visualizer()],
 });
