@@ -140,3 +140,5 @@ export function PlaygroundPage() {
     </div>
   );
 }
+
+export default PlaygroundPage;

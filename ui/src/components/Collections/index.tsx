@@ -78,3 +78,5 @@ export const CollectionsPage = () => {
     </div>
   );
 };
+
+export default CollectionsPage;
