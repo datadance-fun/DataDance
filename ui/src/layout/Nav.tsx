@@ -95,7 +95,7 @@ export function Nav() {
           <TwitterLogoIcon />
         </MenuBarLinkBlankOpen>
         <MenuBarLinkBlankOpen
-          href="https://github.com/pingcap/tidb"
+          href="https://github.com/datadance-fun/DataDance"
           title="Open project in GitHub"
         >
           <GitHubLogoIcon />
